@@ -26,12 +26,12 @@ A simple backend service for banking applications built with golang. It will pro
     dbdocs login
     ```
 
-- [DBML CLI](https://www.dbml.org/cli/#installation)
+<!-- - [DBML CLI](https://www.dbml.org/cli/#installation)
 
     ```bash
     npm install -g @dbml/cli
     dbml2sql --version
-    ```
+    ``` -->
 
 - [Sqlc](https://github.com/kyleconroy/sqlc#installation)
 
@@ -39,19 +39,19 @@ A simple backend service for banking applications built with golang. It will pro
     brew install sqlc
     ```
 
-- [Gomock](https://github.com/golang/mock)
+<!-- - [Gomock](https://github.com/golang/mock)
 
     ``` bash
     go install github.com/golang/mock/mockgen@v1.6.0
-    ```
+    ``` -->
 
 ### Setup infrastructure
-
+<!-- 
 - Create the bank-network
 
     ``` bash
     make network
-    ```
+    ``` -->
 
 - Start postgres container:
 
@@ -71,11 +71,11 @@ A simple backend service for banking applications built with golang. It will pro
     make migrateup
     ```
 
-- Run db migration up 1 version:
+<!-- - Run db migration up 1 version:
 
     ```bash
     make migrateup1
-    ```
+    ``` -->
 
 - Run db migration down all versions:
 
@@ -83,13 +83,13 @@ A simple backend service for banking applications built with golang. It will pro
     make migratedown
     ```
 
-- Run db migration down 1 version:
+<!-- - Run db migration down 1 version:
 
     ```bash
     make migratedown1
-    ```
+    ``` -->
 
-### Documentation
+<!-- ### Documentation
 
 - Generate DB documentation:
 
@@ -97,7 +97,7 @@ A simple backend service for banking applications built with golang. It will pro
     make db_docs
     ```
 
-- Access the DB documentation at [this address](https://dbdocs.io/techschool.guru/simple_bank). Password: `secret`
+- Access the DB documentation at [this address](https://dbdocs.io/techschool.guru/simple_bank). Password: `secret` -->
 
 ### How to generate code
 
@@ -113,11 +113,11 @@ A simple backend service for banking applications built with golang. It will pro
     make sqlc
     ```
 
-- Generate DB mock with gomock:
+<!-- - Generate DB mock with gomock:
 
     ```bash
     make mock
-    ```
+    ``` -->
 
 - Create a new db migration:
 
@@ -138,4 +138,11 @@ A simple backend service for banking applications built with golang. It will pro
     ```bash
     make test
     ```
+
+### Todos
+- bank network
+- support for 1 migration 
+- db mock with gomock
+- db docs
+
 
