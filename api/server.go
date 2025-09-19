@@ -7,13 +7,18 @@ import (
 )
 
 type Server struct {
-	store          *db.Store
-	router         *gin.Engine
-	accountHandler *handlers.AccountHandler
+	store           *db.Store
+	router          *gin.Engine
+	accountHandler  *handlers.AccountHandler
+	transferHandler *handlers.TransferHandler
 }
 
 func NewServer(store *db.Store) *Server {
-	server := &Server{store: store, accountHandler: handlers.NewAccountHandler(store)}
+	server := &Server{
+		store:           store,
+		accountHandler:  handlers.NewAccountHandler(store),
+		transferHandler: handlers.NewTransferHandler(store),
+	}
 
 	router := gin.Default()
 	v1 := router.Group("/api/v1")
@@ -22,6 +27,8 @@ func NewServer(store *db.Store) *Server {
 		v1.GET("/accounts/:id", server.accountHandler.GetAccount)
 		v1.GET("/accounts", server.accountHandler.ListAccounts)
 		v1.PUT("/accounts/:id", server.accountHandler.UpdateAccount)
+		v1.GET("/transfers", server.transferHandler.ListTransfers)
+		v1.POST("/transfers", server.transferHandler.CreateTransfer)
 	}
 
 	server.router = router

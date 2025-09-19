@@ -1,3 +1,9 @@
+dbstart:
+	docker start postgres17
+
+dbstop:
+	docker stop postgres17
+
 postgres:
 	docker run --name postgres17 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:17-bullseye
 
@@ -22,4 +28,4 @@ test:
 server:
 	go run main.go
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc
+.PHONY: dbstart, dbstop, postgres createdb dropdb migrateup migratedown sqlc

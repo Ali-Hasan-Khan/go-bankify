@@ -57,7 +57,36 @@ type txKeyType struct{}
 
 var txKey = txKeyType{}
 
+func (store *Store) ValidateTransfer(ctx context.Context, arg TransferTxParams) error {
+	// Check if accounts exist and have sufficient balance
+	fromAccount, err := store.GetAccount(ctx, arg.FromAccountID)
+	if err != nil {
+		return fmt.Errorf("from account not found: %w", err)
+	}
+
+	_, err = store.GetAccount(ctx, arg.ToAccountID)
+	if err != nil {
+		return fmt.Errorf("to account not found: %w", err)
+	}
+
+	if fromAccount.Balance < arg.Amount {
+		return fmt.Errorf("insufficient balance: available %d, requested %d",
+			fromAccount.Balance, arg.Amount)
+	}
+
+	if arg.Amount <= 0 {
+		return fmt.Errorf("transfer amount must be positive")
+	}
+
+	return nil
+}
+
 func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
+	// Validate before starting transaction
+	if err := store.ValidateTransfer(ctx, arg); err != nil {
+		return TransferTxResult{}, err
+	}
+
 	var result TransferTxResult
 
 	err := store.execTx(ctx, func(q *Queries) error {
