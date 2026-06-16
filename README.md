@@ -6,7 +6,9 @@ A simple backend service for banking applications built with golang. It will pro
 3. Perform a money transfer between 2 accounts. This should happen within a transaction, so that either both accounts’ balance are updated successfully or none of them are.
 
 ## Architecture
-<img width="2976" height="4646" alt="Untitled Diagram-2026-06-16T15-33-05" src="https://github.com/user-attachments/assets/0bdc480e-3e82-4e06-8bd4-b8cc9d7fcc30" />
+<img width="565" height="883" alt="Untitled Diagram-2026-06-16T15-33-05_11zon" src="https://github.com/user-attachments/assets/b0bfa9a4-72d3-466f-bab4-7334271b1eca" />
+
+
 
 
 ## Database Schema
